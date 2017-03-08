@@ -21,6 +21,13 @@ namespace eic.webapi.Controllers
             _accountManager = accountManager;
         }
 
+        [HttpGet]
+        [Route("")]
+        public IActionResult GetUsers()
+        {
+            return Ok(_accountManager.GetListAccount());
+        }
+
         /// <summary>
         /// Tạo mới tài khoản
         /// </summary>

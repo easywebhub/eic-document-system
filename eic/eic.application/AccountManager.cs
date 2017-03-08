@@ -51,7 +51,10 @@ namespace eic.application
 
         public List<EicAccount> GetListAccount()
         {
-            throw new NotImplementedException();
+            var accounts = _accountRepository.FindAll().ToList();
+            var result = new List<EicAccount>();
+            result.AddRange(accounts.Select(x => _eicMapper.ToEicAccount(x)));
+            return result;
         }
     }
 }
