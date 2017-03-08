@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "eic.core": "1.0.0-*",
+    "NETStandard.Library": "1.6.0",
+    "CouchbaseNetClient": "2.4.0",
+    "Couchbase.Extensions.DependencyInjection": "1.0.0", 
+    "System.Linq.Queryable": "4.3.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  }
+}
