@@ -24,7 +24,7 @@ namespace eic.infrastructure.Repositories
 
         public IQueryResult<T> FindAll()
         {
-            var request = QueryRequest.Create(string.Format("SELECT * FROM `{0}` WHERE type='{1}'; ", _bucketProvider.BucketName, typeof(T).Name));
+            var request = QueryRequest.Create(string.Format("SELECT Extent.* FROM `{0}` As Extent WHERE type='{1}'; ", _bucketProvider.BucketName, typeof(T).Name));
             request.ScanConsistency(ScanConsistency.RequestPlus);
             return _bucket.Query<T>(request);
             
