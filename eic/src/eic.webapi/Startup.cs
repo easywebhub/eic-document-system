@@ -14,6 +14,7 @@ using eic.core.Repositories;
 using eic.infrastructure.Repositories;
 using eic.application;
 using eic.infrastructure;
+using ew.middleware.common;
 
 namespace eic.webapi
 {
@@ -81,6 +82,8 @@ namespace eic.webapi
 
             // this uses the policy called "default"
             app.UseCors("default");
+
+            app.UseProcessingTimeMiddleware();
 
             app.UseMvc();
 

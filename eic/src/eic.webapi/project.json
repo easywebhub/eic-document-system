@@ -1,4 +1,4 @@
-﻿{
+{
   "dependencies": {
     "Microsoft.NETCore.App": {
       "version": "1.0.1",
@@ -23,7 +23,8 @@
     "eic.application": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1",
     "Swashbuckle": "6.0.0-beta902",
-    "eic.infrastructure": "1.0.0-*"
+    "eic.infrastructure": "1.0.0-*",
+    "ew.middleware.common": "1.0.0-*"
   },
 
   "tools": {
