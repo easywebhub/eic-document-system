@@ -37,6 +37,7 @@ namespace eic.application
 
         public EicAccount ToEntity(EicAccount eicAccount, AddAccountDto account)
         {
+            eicAccount.IdSrvAccountId = account.IdSrvAccountId;
             eicAccount.AccountType = account.AccountType;
             eicAccount.UserName = account.UserName;
             eicAccount.Info = account.Info;

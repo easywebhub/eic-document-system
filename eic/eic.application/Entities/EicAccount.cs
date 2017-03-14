@@ -1,4 +1,5 @@
 ﻿using eic.application.Entities.Dto;
+using eic.common.Enums;
 using eic.common.Helper;
 using eic.core;
 using eic.core.Repositories;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace eic.application.Entities
 {
-    public class EicAccount: EwhEntityBase
+    public class EicAccount : EwhEntityBase
     {
         private readonly IAccountRepository _accountRepository;
         private readonly IEicMapper _eicMapper;
@@ -35,6 +36,7 @@ namespace eic.application.Entities
 
 
         #region properties
+        public string IdSrvAccountId { get; set; }
         public string AccountId { get; private set; }
         public string AccountType { get; set; }
         public string Password { get; private set; }
@@ -50,6 +52,16 @@ namespace eic.application.Entities
         #endregion
 
         #region methods
+        public bool IsExits()
+        {
+            if (!string.IsNullOrEmpty(AccountId))
+            {
+                return true;
+            }
+            XStatus = GlobalStatus.NotFound;
+            return false;
+        }
+
         public bool Create(AddAccountDto dto)
         {
             _eicMapper.ToEntity(this, dto);
@@ -71,7 +83,7 @@ namespace eic.application.Entities
 
         public bool Save()
         {
-            if (true ) //CheckValidModel() && CheckIsIdentity())
+            if (CheckIsIdentity()) //CheckValidModel() && CheckIsIdentity())
             {
                 _accountRepository.AddOrUpdate(_eicMapper.ToEntity(_account ?? new Account(), this));
                 return true;
@@ -81,11 +93,30 @@ namespace eic.application.Entities
         #endregion
 
         #region private methods
+        private bool CheckIsIdentity()
+        {
+            var check = true;
+            if (IsExits())
+            {
+                check = !string.IsNullOrEmpty(this.IdSrvAccountId) && !_accountRepository.FindAll().Any(x => x.Id != this.AccountId && x.IdSrvAccountId == this.IdSrvAccountId);
+            }
+            else
+            {
+                check = !string.IsNullOrEmpty(this.IdSrvAccountId) && !_accountRepository.FindAll().Any(x => x.IdSrvAccountId == this.IdSrvAccountId);
+            }
+            if (!check)
+            {
+                this.XStatus = GlobalStatus.AlreadyExists;
+            }
+            return check;
+        }
+
         private void MapFrom(Account account)
         {
             if (account == null) return;
             this._account = account;
 
+            this.IdSrvAccountId = account.IdSrvAccountId;
             this.AccountId = account.Id;
             this.UserName = account.UserName;
             this.AccountType = account.AccountType;

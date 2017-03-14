@@ -1773,6 +1773,29 @@
           "lib/netstandard1.3/NLog.Extensions.Logging.dll": {}
         }
       },
+      "RestSharp.NetCore/105.2.4-rc4-24214-01": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "Newtonsoft.Json": "9.0.1",
+          "System.Collections.Specialized": "4.0.1",
+          "System.ComponentModel.TypeConverter": "4.1.0",
+          "System.Net.Requests": "4.0.11",
+          "System.Reflection": "4.1.0",
+          "System.Reflection.Emit": "4.0.1",
+          "System.Runtime.InteropServices": "4.1.0",
+          "System.Runtime.Serialization.Formatters": "4.0.0-rc4-24217-03",
+          "System.Runtime.Serialization.Primitives": "4.1.1",
+          "System.Runtime.Serialization.Xml": "4.1.1",
+          "System.Xml.XmlSerializer": "4.0.11"
+        },
+        "compile": {
+          "lib/netstandard1.6/RestSharp.NetCore.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/RestSharp.NetCore.dll": {}
+        }
+      },
       "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
         "type": "package",
         "runtimeTargets": {
@@ -2120,7 +2143,7 @@
           "System.Threading": "4.0.11"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Collections.Specialized.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Collections.Specialized.dll": {}
@@ -3366,6 +3389,22 @@
           "lib/netstandard1.3/System.Runtime.Numerics.dll": {}
         }
       },
+      "System.Runtime.Serialization.Formatters/4.3.0-preview1-24530-04": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.3.0-preview1-24530-04",
+          "System.Reflection": "4.3.0-preview1-24530-04",
+          "System.Resources.ResourceManager": "4.3.0-preview1-24530-04",
+          "System.Runtime": "4.3.0-preview1-24530-04",
+          "System.Runtime.Serialization.Primitives": "4.3.0-preview1-24530-04"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Runtime.Serialization.Formatters.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll": {}
+        }
+      },
       "System.Runtime.Serialization.Primitives/4.3.0": {
         "type": "package",
         "dependencies": {
@@ -4175,6 +4214,15 @@
         },
         "runtime": {
           "netstandard1.6/ew.middleware.common.dll": {}
+        }
+      },
+      "ew.middleware.idsrv/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v1.6",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "RestSharp.NetCore": "105.2.4-rc4-24214-01",
+          "eic.common": "1.0.0"
         }
       }
     }
@@ -5819,6 +5867,16 @@
         "NLog.Extensions.Logging.nuspec",
         "lib/net451/NLog.Extensions.Logging.dll",
         "lib/netstandard1.3/NLog.Extensions.Logging.dll"
+      ]
+    },
+    "RestSharp.NetCore/105.2.4-rc4-24214-01": {
+      "sha512": "4c/IjqM5N+3awGOFeDh2EvYc/yP5tMvfCQwo2I4MVPwe4oGfyWuUmFWZ9cCjbd5NkpTzf93yUF+Ym6ZJ3cERnw==",
+      "type": "package",
+      "path": "RestSharp.NetCore/105.2.4-rc4-24214-01",
+      "files": [
+        "RestSharp.NetCore.105.2.4-rc4-24214-01.nupkg.sha512",
+        "RestSharp.NetCore.nuspec",
+        "lib/netstandard1.6/RestSharp.NetCore.dll"
       ]
     },
     "runtime.debian.8-x64.runtime.native.System.Security.Cryptography.OpenSsl/4.3.0": {
@@ -9440,6 +9498,33 @@
         "ref/xamarinwatchos10/_._"
       ]
     },
+    "System.Runtime.Serialization.Formatters/4.3.0-preview1-24530-04": {
+      "sha512": "qFoIqgI8GlsgPvamhPuEA1cIjCLWadwBTo6kmdgFmQHwI1B0BTgXdp85Bz2cwwpizPnsKNqBWAJxbkj9v2t3Sw==",
+      "type": "package",
+      "path": "System.Runtime.Serialization.Formatters/4.3.0-preview1-24530-04",
+      "files": [
+        "System.Runtime.Serialization.Formatters.4.3.0-preview1-24530-04.nupkg.sha512",
+        "System.Runtime.Serialization.Formatters.nuspec",
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/MonoAndroid10/_._",
+        "lib/MonoTouch10/_._",
+        "lib/net46/System.Runtime.Serialization.Formatters.dll",
+        "lib/netstandard1.4/System.Runtime.Serialization.Formatters.dll",
+        "lib/xamarinios10/_._",
+        "lib/xamarinmac20/_._",
+        "lib/xamarintvos10/_._",
+        "lib/xamarinwatchos10/_._",
+        "ref/MonoAndroid10/_._",
+        "ref/MonoTouch10/_._",
+        "ref/net46/System.Runtime.Serialization.Formatters.dll",
+        "ref/netstandard1.3/System.Runtime.Serialization.Formatters.dll",
+        "ref/xamarinios10/_._",
+        "ref/xamarinmac20/_._",
+        "ref/xamarintvos10/_._",
+        "ref/xamarinwatchos10/_._"
+      ]
+    },
     "System.Runtime.Serialization.Primitives/4.3.0": {
       "sha512": "Wz+0KOukJGAlXjtKr+5Xpuxf8+c8739RI1C+A2BoQZT+wMCCoMDDdO8/4IRHfaVINqL78GO8dW8G2lW/e45Mcw==",
       "type": "package",
@@ -10970,6 +11055,10 @@
       "type": "project",
       "path": "../../ew.middleware.common/project.json",
       "msbuildProject": "../../ew.middleware.common/ew.middleware.common.xproj"
+    },
+    "ew.middleware.idsrv/1.0.0": {
+      "type": "project",
+      "path": "../../ew.middleware.idsrv/project.json"
     }
   },
   "projectFileDependencyGroups": {
@@ -10995,7 +11084,8 @@
       "Swashbuckle >= 6.0.0-beta902",
       "eic.application >= 1.0.0-*",
       "eic.infrastructure >= 1.0.0-*",
-      "ew.middleware.common >= 1.0.0-*"
+      "ew.middleware.common >= 1.0.0-*",
+      "ew.middleware.idsrv >= 1.0.0-*"
     ],
     ".NETCoreApp,Version=v1.0": []
   },

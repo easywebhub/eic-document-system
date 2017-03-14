@@ -73,7 +73,7 @@ namespace eic.webapi.Controllers
             var x = NoOK(ewhEntityBase.XStatus.ToString()) as ResponseMessageResult;
             if (ewhEntityBase != null)
             {
-                x.Response.Headers.Add(XHeaders.X_Error_Message, ewhEntityBase.XErrorMessage);
+                this.Response.Headers.Add(XHeaders.X_Error_Message, ewhEntityBase.XErrorMessage);
                 //x.Response.Headers.Add(EwHeaders.X_Status, ewhEntityBase.EwhStatus.ToString());
             }
             return x;
