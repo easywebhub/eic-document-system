@@ -17,6 +17,8 @@ namespace eic.common.Enums
         Access_Denied,
         NotFound,
         AlreadyExists,
-
+        Locked,
+        Deleted,
+        NotActiveYet
     }
 }

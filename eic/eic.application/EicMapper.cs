@@ -26,6 +26,7 @@ namespace eic.application
         public Account ToEntity(Account account, EicAccount eicAccount)
         {
             account.AccountType = eicAccount.AccountType;
+            account.IdSrvAccountId = eicAccount.IdSrvAccountId;
             account.Info = eicAccount.Info;
             account.Password = eicAccount.Password;
             account.PasswordSalt = eicAccount.PasswordSaft;

@@ -13,7 +13,7 @@ using eic.middleware.idsrv_wrapper;
 namespace eic.webapi.Controllers
 {
     [Route("api/[controller]")]
-    public class AccountController : BaseApiController
+    public partial class AccountController : BaseApiController
     {
         private IAccountManager _accountManager;
 

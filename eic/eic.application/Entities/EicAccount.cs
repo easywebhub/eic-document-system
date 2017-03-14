@@ -34,7 +34,6 @@ namespace eic.application.Entities
             MapFrom(_account);
         }
 
-
         #region properties
         public string IdSrvAccountId { get; set; }
         public string AccountId { get; private set; }
@@ -62,9 +61,29 @@ namespace eic.application.Entities
             return false;
         }
 
+        public bool CanSignIn()
+        {
+            if (IsExits())
+            {
+                if (this.Status == AccountStatus.Active.ToString()) return true;
+                else if(this.Status == AccountStatus.Locked.ToString())
+                {
+                    XStatus = GlobalStatus.Locked;
+                }else if(this.Status == AccountStatus.Deleted.ToString())
+                {
+                    XStatus = GlobalStatus.Deleted;
+                }else
+                {
+                    XStatus = GlobalStatus.NotActiveYet;
+                }
+            }
+            return false;
+        }
+
         public bool Create(AddAccountDto dto)
         {
             _eicMapper.ToEntity(this, dto);
+            this.Status = AccountStatus.Active.ToString();
             this.PasswordSaft = StringUtils.CreateSalt(20);
             this.Password = StringUtils.GenerateSaltedHash(dto.Password, this.PasswordSaft);
             return Save();

@@ -49,6 +49,17 @@ namespace eic.application
             return new EicAccount(account, _accountRepository, _eicMapper);
         }
 
+        public EicAccount GetEwhAccountByIdSrv(string idSrvAccountId)
+        {
+            var account = _accountRepository.FindAll().Where(x => x.IdSrvAccountId == idSrvAccountId).FirstOrDefault();
+            if (account == null)
+            {
+                XStatus = GlobalStatus.NotFound;
+                return null;
+            }
+            return new EicAccount(account, _accountRepository, _eicMapper);
+        }
+
         public List<EicAccount> GetListAccount()
         {
             var accounts = _accountRepository.FindAll().ToList();

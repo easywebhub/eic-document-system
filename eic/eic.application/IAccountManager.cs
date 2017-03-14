@@ -13,6 +13,7 @@ namespace eic.application
 
         bool CreateAccount(AddAccountDto dto);
         EicAccount GetEwhAccount(string id);
+        EicAccount GetEwhAccountByIdSrv(string idSrvAccountId);
         List<EicAccount> GetListAccount();
     }
 }
