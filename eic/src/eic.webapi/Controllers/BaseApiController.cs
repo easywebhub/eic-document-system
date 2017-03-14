@@ -7,6 +7,7 @@ using System.Net;
 using eic.common.Enums;
 using ew.common.Entities;
 using System.Web.Http;
+using Microsoft.AspNetCore.Cors;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -73,7 +74,7 @@ namespace eic.webapi.Controllers
             var x = NoOK(ewhEntityBase.XStatus.ToString()) as ResponseMessageResult;
             if (ewhEntityBase != null)
             {
-                this.Response.Headers.Add(XHeaders.X_Error_Message, ewhEntityBase.XErrorMessage);
+                this.Response.Headers.Add(XHeaders.X_Error_Message, ewhEntityBase.XErrorMessage ?? "");
                 //x.Response.Headers.Add(EwHeaders.X_Status, ewhEntityBase.EwhStatus.ToString());
             }
             return x;

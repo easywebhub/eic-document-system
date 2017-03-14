@@ -15,6 +15,7 @@ using eic.infrastructure.Repositories;
 using eic.application;
 using eic.infrastructure;
 using ew.middleware.common;
+using Microsoft.AspNetCore.Cors.Infrastructure;
 
 namespace eic.webapi
 {
@@ -42,16 +43,15 @@ namespace eic.webapi
         // This method gets called by the runtime. Use this method to add services to the container
         public void ConfigureServices(IServiceCollection services)
         {
+            var corsBuilder = new CorsPolicyBuilder();
+            corsBuilder.AllowAnyHeader();
+            corsBuilder.AllowAnyMethod();
+            corsBuilder.AllowAnyOrigin();
+            corsBuilder.AllowCredentials();
+
             services.AddCors(options =>
             {
-                // this defines a CORS policy called "default"
-                options.AddPolicy("default", policy =>
-                {
-                    policy //.WithOrigins("http://localhost:5003")
-                    .AllowAnyOrigin()
-                    .AllowAnyHeader()
-                    .AllowAnyMethod();
-                });
+                options.AddPolicy("AllowAll", corsBuilder.Build());
             });
 
             // Add framework services.
@@ -73,6 +73,9 @@ namespace eic.webapi
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
+            // this uses the policy called "default"
+            app.UseCors("AllowAll");
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
 
@@ -80,13 +83,10 @@ namespace eic.webapi
 
             app.UseApplicationInsightsExceptionTelemetry();
 
-            // this uses the policy called "default"
-            app.UseCors("default");
-
             app.UseProcessingTimeMiddleware();
-
+            
             app.UseMvc();
-
+            
             app.UseSwagger();
             app.UseSwaggerUi();
         }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using eic.application;
 using eic.webapi.Dtos;
 using eic.common.Enums;
+using Microsoft.AspNetCore.Cors;
+using ew.common.Entities;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -32,7 +34,7 @@ namespace eic.webapi.Controllers
                 {
                     return Ok(eicAccount);
                 }
-                return ServerError(eicAccount);
+                return ServerError(_accountManager as EwhEntityBase);
             }
             return NoOK();
         }
