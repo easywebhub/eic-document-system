@@ -14,5 +14,9 @@ namespace eic.application
         EicAccount ToEntity(EicAccount eicAccount, AddAccountDto account);
         Account ToEntity(Account account, EicAccount eicAccount);
         EicAccount ToEntity(EicAccount eicAccount, CreateAccountDto account);
+
+        Group ToEntity(Group group, EicGroup eicGroup);
+
+        core.Action ToEntity(core.Action action, EicAction eicAction);
     }
 }

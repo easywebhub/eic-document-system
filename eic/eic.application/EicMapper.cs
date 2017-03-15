@@ -59,5 +59,24 @@ namespace eic.application
 
             return eicAccount;
         }
+
+        #region group
+        public Group ToEntity(Group group, EicGroup eicGroup)
+        {
+            group.Name = eicGroup.Name;
+            group.Description = eicGroup.Description;
+            group.ParentGroup = eicGroup.ParentGroup;
+            return group;
+        }
+        #endregion
+
+        #region action
+        public core.Action ToEntity(core.Action action, EicAction eicAction)
+        {
+            action.Name = eicAction.Name;
+            action.Description = eicAction.Description;
+            return action;
+        }
+        #endregion
     }
 }
