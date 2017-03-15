@@ -25,16 +25,17 @@ namespace eic.application
         public EicAccount EicAccountAdded { get; protected set; }
         #endregion
 
-        public bool CreateAccount(AddAccountDto dto)
+        public bool CreateAccount(CreateAccountDto dto)
         {
-            var ewhAccount = new EicAccount(_accountRepository, _eicMapper);
+            var eicAccount = new EicAccount(_accountRepository, _eicMapper);
+            _eicMapper.ToEntity(eicAccount, dto);
             var check = false;
-            if (ewhAccount.Create(dto))
+            if (eicAccount.Create(dto))
             {
                 check = true;
-                EicAccountAdded = ewhAccount;
+                EicAccountAdded = eicAccount;
             }
-            SyncStatus(this, ewhAccount);
+            SyncStatus(this, eicAccount);
             return check;
         }
 

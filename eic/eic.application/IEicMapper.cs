@@ -13,5 +13,6 @@ namespace eic.application
         EicAccount ToEicAccount(Account account);
         EicAccount ToEntity(EicAccount eicAccount, AddAccountDto account);
         Account ToEntity(Account account, EicAccount eicAccount);
+        EicAccount ToEntity(EicAccount eicAccount, CreateAccountDto account);
     }
 }

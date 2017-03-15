@@ -44,6 +44,8 @@ namespace eic.application.Entities
         public string UserName { get; set; }
         public string Status { get; set; }
         public AccountInfo Info { get; set; }
+        public List<AccountInGroup> Groups { get; set; }
+        public List<ActionOfAccount> Actions { get; set; }
         #endregion
 
         #region ext properties
@@ -94,7 +96,7 @@ namespace eic.application.Entities
             if (Save())
             {
                 AccountId = _account.Id;
-                //SelfSync();
+                SelfSync();
                 return true;
             }
             return false;
@@ -108,6 +110,12 @@ namespace eic.application.Entities
                 return true;
             }
             return false;
+        }
+
+        public async Task<bool> SelfSync()
+        {
+            
+            return true;
         }
         #endregion
 
@@ -143,6 +151,8 @@ namespace eic.application.Entities
             this.Info = account.Info ?? new AccountInfo();
             this.Password = account.Password;
             this.PasswordSaft = account.PasswordSalt;
+            this.Groups = account.Groups;
+            this.Actions = account.Actions;
         }
         #endregion
     }

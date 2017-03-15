@@ -25,6 +25,12 @@ namespace eic.application.Entities.Dto
         public AddAccountDto() { }
     }
 
-   
+    public class CreateAccountDto: AddAccountDto
+    {
+        public List<AccountInGroup> Groups { get; set; }
+        public List<ActionOfAccount> Actions { get; set; }
+    }
+    
+      
 
 }

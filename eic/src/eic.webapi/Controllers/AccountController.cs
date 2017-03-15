@@ -35,7 +35,7 @@ namespace eic.webapi.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("")]
-        public IActionResult CreateUser([FromBody]AddAccountDto dto)
+        public IActionResult CreateUser([FromBody]CreateAccountDto dto)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
             var idSrvManager = new IdSrvManager();

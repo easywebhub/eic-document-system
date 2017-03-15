@@ -11,7 +11,7 @@ namespace eic.application
     {
         EicAccount EicAccountAdded { get; }
 
-        bool CreateAccount(AddAccountDto dto);
+        bool CreateAccount(CreateAccountDto dto);
         EicAccount GetEwhAccount(string id);
         EicAccount GetEwhAccountByIdSrv(string idSrvAccountId);
         List<EicAccount> GetListAccount();

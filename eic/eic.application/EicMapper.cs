@@ -32,7 +32,8 @@ namespace eic.application
             account.PasswordSalt = eicAccount.PasswordSaft;
             account.Status = eicAccount.Status;
             account.UserName = eicAccount.UserName;
-
+            account.Groups = eicAccount.Groups;
+            account.Actions = eicAccount.Actions;
             return account;
         }
 
@@ -42,6 +43,19 @@ namespace eic.application
             eicAccount.AccountType = account.AccountType;
             eicAccount.UserName = account.UserName;
             eicAccount.Info = account.Info;
+            
+
+            return eicAccount;
+        }
+
+        public EicAccount ToEntity(EicAccount eicAccount, CreateAccountDto account)
+        {
+            eicAccount.IdSrvAccountId = account.IdSrvAccountId;
+            eicAccount.AccountType = account.AccountType;
+            eicAccount.UserName = account.UserName;
+            eicAccount.Info = account.Info;
+            eicAccount.Groups = account.Groups;
+            eicAccount.Actions = account.Actions;
 
             return eicAccount;
         }
