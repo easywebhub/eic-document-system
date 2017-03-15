@@ -62,8 +62,12 @@ namespace eic.webapi
             services.AddCouchbase(Configuration.GetSection("Couchbase"));
             services.AddCouchbaseBucket<IEicBucketProvider>("eiccb");
             services.AddTransient<IAccountRepository, AccountRepository>();
+            services.AddTransient<IActionRepository, ActionRepository>();
+            services.AddTransient<IGroupRepository, GroupRepository>();
             services.AddTransient<IEicMapper, EicMapper>();
             services.AddTransient<IAccountManager, AccountManager>();
+            services.AddTransient<IGroupManager, GroupManager>();
+            services.AddTransient<IActionManager, ActionManager>();
 
             services.AddMvc();
 
