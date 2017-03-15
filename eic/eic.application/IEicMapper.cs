@@ -1,22 +1,21 @@
-﻿using eic.application.Entities;
+﻿using eic.application.Dtos;
+using eic.application.Entities;
 using eic.application.Entities.Dto;
 using eic.core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace eic.application
 {
     public interface IEicMapper
     {
         EicAccount ToEicAccount(Account account);
-        EicAccount ToEntity(EicAccount eicAccount, AddAccountDto account);
-        Account ToEntity(Account account, EicAccount eicAccount);
-        EicAccount ToEntity(EicAccount eicAccount, CreateAccountDto account);
-
+        EicAction ToEicAction(Action action);
+        EicGroup ToEicGroup(Group group);
         Group ToEntity(Group group, EicGroup eicGroup);
-
-        core.Action ToEntity(core.Action action, EicAction eicAction);
+        EicAccount ToEntity(EicAccount eicAccount, AddAccountDto account);
+        EicAccount ToEntity(EicAccount eicAccount, CreateAccountDto account);
+        Action ToEntity(Action action, EicAction eicAction);
+        Account ToEntity(Account account, EicAccount eicAccount);
+        EicAction ToEntity(EicAction eicAction, CreateActionDto dto);
+        EicGroup ToEntity(EicGroup eicGroup, CreateGroupDto dto);
     }
 }

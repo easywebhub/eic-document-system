@@ -21,6 +21,7 @@ namespace eic.application.Entities
         {
             _accountRepository = accountRepository;
             _eicMapper = eicMapper;
+            _account = new Account();
         }
 
         public EicAccount(Account account, IAccountRepository accountRepository, IEicMapper eicMapper) : this(accountRepository, eicMapper)
@@ -106,7 +107,9 @@ namespace eic.application.Entities
         {
             if (CheckIsIdentity()) //CheckValidModel() && CheckIsIdentity())
             {
-                _accountRepository.AddOrUpdate(_eicMapper.ToEntity(_account ?? new Account(), this));
+                if (_account == null) _account = new Account();
+                _accountRepository.AddOrUpdate(_eicMapper.ToEntity(_account, this));
+                AccountId = _account.Id;
                 return true;
             }
             return false;

@@ -18,6 +18,7 @@ namespace eic.application.Entities
         {
             _groupRepository = groupRepository;
             _eicMapper = eicMapper;
+            _group = new Group();
         }
 
         public EicGroup(Group group, IGroupRepository groupRepository, IEicMapper eicMapper): this(groupRepository, eicMapper)
@@ -67,7 +68,9 @@ namespace eic.application.Entities
         {
             if (CheckIsIdentity()) //CheckValidModel() && CheckIsIdentity())
             {
-                _groupRepository.AddOrUpdate(_eicMapper.ToEntity(_group ?? new Group(), this));
+                if (_group == null) _group = new Group();
+                _groupRepository.AddOrUpdate(_eicMapper.ToEntity(_group, this));
+                GroupId = _group.Id;
                 return true;
             }
             return false;

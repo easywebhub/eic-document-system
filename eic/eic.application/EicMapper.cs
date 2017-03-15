@@ -6,15 +6,20 @@ using eic.application.Entities;
 using eic.application.Entities.Dto;
 using eic.core;
 using eic.core.Repositories;
+using eic.application.Dtos;
 
 namespace eic.application
 {
-    public class EicMapper : IEicMapper
+    public class EicMapper: IEicMapper
     {
         private readonly IAccountRepository _accountRepository;
+        private readonly IActionRepository _actionRepository;
+        private readonly IGroupRepository _groupRepository;
 
-        public EicMapper(IAccountRepository accountRepository)
+        public EicMapper(IAccountRepository accountRepository, IGroupRepository groupRepository, IActionRepository actionRepository)
         {
+            _accountRepository = accountRepository;
+            _groupRepository = groupRepository;
             _accountRepository = accountRepository;
         }
 
@@ -61,6 +66,12 @@ namespace eic.application
         }
 
         #region group
+        public EicGroup ToEicGroup(Group group)
+        {
+            return new EicGroup(group, _groupRepository, this);
+        }
+
+
         public Group ToEntity(Group group, EicGroup eicGroup)
         {
             group.Name = eicGroup.Name;
@@ -68,14 +79,33 @@ namespace eic.application
             group.ParentGroup = eicGroup.ParentGroup;
             return group;
         }
+        public EicGroup ToEntity(EicGroup eicGroup, CreateGroupDto dto)
+        {
+            eicGroup.Name = dto.Name;
+            eicGroup.Description = dto.Description;
+            eicGroup.ParentGroup = dto.ParentGroup;
+            return eicGroup;
+        }
         #endregion
 
         #region action
+        public EicAction ToEicAction(core.Action action)
+        {
+            return new EicAction(action, _actionRepository, this);
+        }
+
         public core.Action ToEntity(core.Action action, EicAction eicAction)
         {
             action.Name = eicAction.Name;
             action.Description = eicAction.Description;
             return action;
+        }
+
+        public EicAction ToEntity( EicAction eicAction, CreateActionDto dto)
+        {
+            eicAction.Name = dto.Name;
+            eicAction.Description = dto.Description;
+            return eicAction;
         }
         #endregion
     }

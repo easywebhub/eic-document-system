@@ -18,6 +18,7 @@ namespace eic.application.Entities
         {
             _actionRepository = actionRepository;
             _eicMapper = eicMapper;
+            _action = new core.Action();
         }
 
         public EicAction(core.Action action, IActionRepository actionRepository, IEicMapper eicMapper): this(actionRepository, eicMapper)
@@ -66,7 +67,9 @@ namespace eic.application.Entities
         {
             if (CheckIsIdentity()) //CheckValidModel() && CheckIsIdentity())
             {
-                _actionRepository.AddOrUpdate(_eicMapper.ToEntity(_action ?? new core.Action(), this));
+                if (_action == null) _action = new core.Action();
+                _actionRepository.AddOrUpdate(_eicMapper.ToEntity(_action, this));
+                ActionId = _action.Id;
                 return true;
             }
             return false;

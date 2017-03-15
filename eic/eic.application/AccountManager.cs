@@ -30,7 +30,7 @@ namespace eic.application
             var eicAccount = new EicAccount(_accountRepository, _eicMapper);
             _eicMapper.ToEntity(eicAccount, dto);
             var check = false;
-            if (eicAccount.Create(dto))
+            if (eicAccount.Create())
             {
                 check = true;
                 EicAccountAdded = eicAccount;
