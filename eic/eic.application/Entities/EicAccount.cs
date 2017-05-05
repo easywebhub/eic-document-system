@@ -108,6 +108,7 @@ namespace eic.application.Entities
             if (CheckIsIdentity()) //CheckValidModel() && CheckIsIdentity())
             {
                 if (_account == null) _account = new Account();
+                this.Status = AccountStatus.Active.ToString();
                 _accountRepository.AddOrUpdate(_eicMapper.ToEntity(_account, this));
                 AccountId = _account.Id;
                 return true;

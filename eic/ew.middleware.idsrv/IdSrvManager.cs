@@ -7,14 +7,14 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace eic.middleware.idsrv_wrapper
+namespace ew.middleware.idsrv_wrapper
 {
-    public class IdSrvManager : EwhEntityBase
+    public class IdSrvManager : EwhEntityBase, IIdSrvManager
     {
         public string IdSrvAPIBaseUrl = "http://api.easyadmincp.com/";
-        public IdSrvUser UserAdded;
-        public IdSrvUserDetail UserLoggedFullInfo;
 
+        public IdSrvUser UserAdded { get; protected set; }
+        public IdSrvUserDetail UserLoggedFullInfo { get; protected set; }
 
         public bool RegisterUser(RegisterUserDto dto)
         {

@@ -16,6 +16,7 @@ using eic.application;
 using eic.infrastructure;
 using ew.middleware.common;
 using Microsoft.AspNetCore.Cors.Infrastructure;
+using ew.middleware.idsrv_wrapper;
 
 namespace eic.webapi
 {
@@ -69,6 +70,9 @@ namespace eic.webapi
             services.AddTransient<IGroupManager, GroupManager>();
             services.AddTransient<IActionManager, ActionManager>();
 
+            services.AddTransient<IIdSrvManager, IdSrvManager>();
+
+            services.AddMemoryCache();
             services.AddMvc();
 
             services.AddSwaggerGen();
@@ -88,9 +92,22 @@ namespace eic.webapi
             app.UseApplicationInsightsExceptionTelemetry();
 
             app.UseProcessingTimeMiddleware();
-            
+
+            app.UseIdentityServerAuthentication(new IdentityServerAuthenticationOptions
+            {
+                Authority = "http://id.easyadmincp.com",
+                RequireHttpsMetadata = false,
+
+                //ApiName = "apis_fullaccess", // access_token của client được trả về phải có aud chứa Resource này ( ApiName) thì mới xác thực, Không qui định thì là ALL, ko ràng buộc
+                //AllowedScopes = { "apis_fullaccess__read", "apis_fullaccess__write" }, // client phải request access_token với 1 trong các scope này mới dc chứng thực, KHONG QUI DINH -> ALL, ko ràng buộc
+
+                //SupportedTokens = IdentityServer4.AccessTokenValidation.SupportedTokens.Both,
+                SaveToken = true
+            });
+
+
             app.UseMvc();
-            
+
             app.UseSwagger();
             app.UseSwaggerUi();
         }

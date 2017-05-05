@@ -6,12 +6,14 @@ using Microsoft.AspNetCore.Mvc;
 using eic.application;
 using eic.application.Entities.Dto;
 using ew.common.Entities;
-using eic.middleware.idsrv_wrapper;
+using Microsoft.AspNetCore.Authorization;
+using ew.middleware.idsrv_wrapper;
 
 // For more information on enabling Web API for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace eic.webapi.Controllers
 {
+    [Authorize]
     [Route("api/[controller]")]
     public partial class AccountController : BaseApiController
     {
@@ -26,6 +28,7 @@ namespace eic.webapi.Controllers
         [Route("")]
         public IActionResult GetUsers()
         {
+            var user = HttpContext.User;
             return Ok(_accountManager.GetListAccount());
         }
 

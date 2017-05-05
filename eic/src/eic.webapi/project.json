@@ -20,11 +20,14 @@
     "Microsoft.Extensions.Logging.Console": "1.0.0",
     "Microsoft.Extensions.Logging.Debug": "1.0.0",
     "Microsoft.Extensions.Options.ConfigurationExtensions": "1.0.0",
-    "eic.application": "1.0.0-*",
     "Microsoft.AspNetCore.Mvc.WebApiCompatShim": "1.0.1",
+    "Microsoft.Extensions.Caching.Memory": "1.1.1",
     "Swashbuckle": "6.0.0-beta902",
+    "eic.application": "1.0.0-*",
     "eic.infrastructure": "1.0.0-*",
     "ew.middleware.common": "1.0.0-*",
+    "IdentityServer4.AccessTokenValidation": "1.1.0",
+    "Microsoft.AspNetCore.Authentication": "1.1.1",
     "ew.middleware.idsrv": "1.0.0-*"
   },
 

@@ -20,7 +20,6 @@ namespace ew.middleware.common
         {
             var watch = new Stopwatch();
             watch.Start();
-
             context.Response.OnStarting((state) =>
             {
                 context.Response.Headers.Add("X-Processing-Time-Milliseconds", new[] { watch.ElapsedMilliseconds.ToString() });
